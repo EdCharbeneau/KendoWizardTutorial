@@ -1,0 +1,35 @@
+﻿@{ Layout = null; }
+@model KuiWizardTutorial.Models.RegisterViewModel
+
+
+<h2>Account Setup</h2>
+<div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email)
+        @(Html.Kendo().TextBoxFor(m => m.Email)
+                .HtmlAttributes(new { placeholder = "you@domain.com", type = "email", @class = "k-textbox required" })
+        )
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @(Html.Kendo().TextBoxFor(m => m.Password)
+            .Value("Password1#")
+            .HtmlAttributes(new { placeholder = "Password", type = "password" })
+        )
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ConfirmPassword)
+        @(Html.Kendo().TextBoxFor(m => m.ConfirmPassword)
+            .Value("Password1#")
+            .HtmlAttributes(new { placeholder = "Confirm password", type = "password" })
+        )
+    </div>
+    <footer class="col-xs-12 form-group text-right">
+        @(Html.Kendo().Button()
+                .Name("Next1")
+                .Content("Next")
+                .HtmlAttributes(new { @class = "k-primary" })
+                .Events(ev => ev.Click("onNextClick")))
+    </footer>
+</div>

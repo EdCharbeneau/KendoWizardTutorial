@@ -1,0 +1,36 @@
+﻿@{ Layout = null;}
+@model KuiWizardTutorial.Models.RegisterViewModel
+
+
+<h2>Social Networks</h2>
+<div class="form-horizontal">
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName)
+        @Html.Kendo().TextBoxFor(m => m.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName)
+        @Html.Kendo().TextBoxFor(m => m.LastName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Phone)
+        @(Html.Kendo().MaskedTextBoxFor(m=> m.Phone)
+                  .Mask("(999) 000-0000")
+        )
+    </div>
+
+    <footer class="col-xs-12 form-group text-right">
+
+        @(Html.Kendo().Button()
+                .Name("Previous3")
+                .Content("Previous")
+                .Events(ev => ev.Click("onPreviousClick")))
+
+        @(Html.Kendo().Button()
+                .Name("Next3")
+                .Content("Next")
+                .HtmlAttributes(new { @class = "k-primary" })
+                .Events(ev => ev.Click("onNextClick")))
+    </footer>
+</div>

@@ -1,0 +1,112 @@
+﻿@model KuiWizardTutorial.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+<div class="row">
+    <div class="col-xs-8">
+        @(Html.Kendo().ProgressBar()
+                  .Name("profileCompleteness")
+                  .Type(ProgressBarType.Value)
+                  .ShowStatus(false)
+                  .Min(0)
+                  .Max(4)
+                  .Value(1)
+        )
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+
+            @Html.AntiForgeryToken()
+
+            @(Html.Kendo().TabStrip()
+                  .Name("tabstrip")
+                  .Items(tabstrip =>
+                  {
+                      tabstrip.Add().Text("Account Setup")
+                          .Selected(true)
+                          .Content(m => Html.Partial("_RegistrationStep1", m));
+
+                      tabstrip.Add().Text("Social Networks")
+                          .Enabled(false)
+                          .Content(m => Html.Partial("_RegistrationStep2", m));
+
+                      tabstrip.Add().Text("Personal Details")
+                          .Enabled(false)
+                          .Content(m => Html.Partial("_RegistrationStep3", m));
+
+                      tabstrip.Add().Text("Submit")
+                          .Enabled(false)
+                          .Content(m => Html.Partial("_RegistrationStep4", m));
+
+                  })
+                .Events(ev =>
+                {
+                    ev.Select("onSelect");
+                    ev.Show("onShow");
+                })
+
+            )
+        }
+    </div>
+</div>
+@section Scripts {
+    <script>
+
+        var progress,
+            tabs,
+            currentIndex = 0;
+
+        $(document).ready(function () {
+            progress = $("#profileCompleteness").data("kendoProgressBar");
+            tabs = $("#tabstrip").data("kendoTabStrip");
+        })
+
+        function onSelect(e) {
+
+            var selectedIndex = tabIndexOfElement(e.item),
+
+            isMovingBack = selectedIndex < currentIndex;
+
+            if (isMovingBack || isTabValidAt(currentIndex)) {
+                console.log("tab passed validation")
+                currentIndex = selectedIndex;
+                tabs.enable(getTabAtIndex(currentIndex), true);
+            }
+            else {
+                e.preventDefault();
+            }
+        }
+
+        function onPreviousClick(e) {
+            e.preventDefault();
+            tabs.select(tabs.select().prev());
+        }
+
+        function onNextClick(e) {
+            e.preventDefault();
+
+            tabs.select(getTabAtIndex(currentIndex + 1));
+        }
+
+        function getTabAtIndex(index) {
+            return tabs.tabGroup.children().eq(index);
+        }
+
+        function tabIndexOfElement(element) {
+            return tabs.element.find(element).index();
+        }
+
+        function isTabValidAt(tabIndex) {
+            var el = tabs.contentElement(tabIndex),
+                val = $(el).kendoValidator().data("kendoValidator");
+            return val.validate();
+        }
+
+        function onShow(e) {
+            progress.value(currentIndex + 1);
+        }
+
+    </script>
+
+}

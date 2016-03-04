@@ -1,0 +1,18 @@
+﻿@{ Layout = null;}
+@model KuiWizardTutorial.Models.RegisterViewModel
+<h2>Finish</h2>
+<p>
+    You finished the process, click submit to save.
+</p>
+<footer class="col-xs-12 form-group text-right">
+
+    @(Html.Kendo().Button()
+                .Name("Previous4")
+                .Content("Previous")
+                .Events(ev => ev.Click("onPreviousClick")))
+
+    @(Html.Kendo().Button()
+                .Name("submit")
+                .Content("Submit")
+                .HtmlAttributes(new { @class = "k-primary" }))
+</footer>
