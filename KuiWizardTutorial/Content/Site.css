@@ -89,7 +89,12 @@ label {
 .k-tabstrip-top > .k-tabstrip-items > .k-item {
     width: 25%; /* number of tabs / 100 */
 }
-
+ 
 .k-tabstrip-top > .k-tabstrip-items .k-item.k-state-active {
     backgroud-image: none;
 }
+
+.k-widget.k-tooltip-validation {
+    display: block;
+    width: 50%;
+    box-sizing: border-box
