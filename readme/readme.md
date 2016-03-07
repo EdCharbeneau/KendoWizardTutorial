@@ -198,7 +198,7 @@ _RegistrationStep2.cshtml
 
 ## Summary
 
-Under the right circumstances step-wise forms can simplify a lengthy process. The implementation only takes a few controls from Telerik UI for ASP.NET MVC (aka Kendo UI) and a little client-side API. If you find yourself using this setup on multiple projects a reusable wizard control could be created with a few extra abstractions. The code for this article is available on GitHub to help get you started. Download a 30 day trial of Telerik UI for ASP.NET MVC here https://www.telerik.com/download-trial-file/v2/ui-for-asp.net-mvc.
+Under the right circumstances step-wise forms can simplify a lengthy process. The implementation only takes a few controls from Telerik UI for ASP.NET MVC (aka Kendo UI) and a little client-side API. If you find yourself using this setup on multiple projects a reusable wizard control could be created with a few extra abstractions. The [code for this article](https://github.com/EdCharbeneau/KendoWizardTutorial/) is available on GitHub to help get you started. Download a [30 day trial of Telerik UI for ASP.NET MVC here](https://www.telerik.com/download-trial-file/v2/ui-for-asp.net-mvc).
 
 
 
